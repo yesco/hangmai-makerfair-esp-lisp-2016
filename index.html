@@ -1,0 +1,639 @@
+
+<!-- saved from url=(0063)file:///home/knoppix/GIT/changmai-makerfair-esp-lisp/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 2015 (C) Jonas S Karlsson slides using css/javascript/bigletters -->
+<style>
+
+.slide {
+  text-align: left;
+  background: cyan;
+  color: red;
+  font-weight: bold;
+  display: table;
+  padding: 10px;
+  //border: 1px solid black;
+  //border-radius: 3px;
+  border-bottom: 1px solid black;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin-bottom: 200px;
+  margin-right: 200px;
+}
+
+.fit {
+  text-align: center;
+  display: inline-block;
+  clear: right;
+  white-space: pre;
+  font-size: 40px;
+  line-height: 35px;
+}
+
+.xfit:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    height: 1%;
+}
+.nav {
+  z-level: 100;
+  position: fixed;
+  top: 0px;
+  background: black;
+  color: white;
+  font-size:50px;
+  border: 5px;
+  border-radius: 50px;
+  font-weight: bold;
+  //max-width: 10%;
+  min-width: 20px;
+}
+</style>
+
+<script>
+var lastEvent, lastTarget;
+</script>
+
+</head><body style="position:absolute; margin:0px; padding:0px; overflow:hidden;">
+
+<div class="nav" style="left:0px;">
+  <nobr><span onclick="goto(1)">|</span><span onclick="prev()">&lt;&lt;</span></nobr>
+</div>
+<div class="nav" style="right:0px;">
+  <nobr><span onclick="next()">&gt;&gt;</span><span onclick="goto(-1)">|</span></nobr>
+</div>
+
+<div id="menu" style="position: fixed; left: 0px; top: 100px; color: white; font-size: 30px; opacity: 0.0634822994616116; background: black;">
+<div onclick="about()" title="show about" style="background:red;color:white;">about</div>
+<div id="current" onclick="goto(current)" style="background:white;color:black;border:2px solid black;">22/24</div>
+<!--
+<div onclick='zoom(current, 0.9)'><b>--</b></div>
+<div onclick='zoom(current, 1.1)'><b>++</b></div>
+-->
+<div onclick="overview()" title="show overview of all slides"><b>?</b></div>
+<br>
+<div onclick="newslide(current)" title="insert a new slide here"><b>+</b></div>
+<div onclick="newslide()" title="new slide at end"><b>++</b></div>
+<br>
+<div onclick="color(current, &quot;background&quot;);" title="change the slide background color"><b>B</b></div>
+<div onclick="color(current, &quot;color&quot;)" title="change the slide text color"><b>C</b></div>
+<br>
+<div onclick="color(lastTarget, &quot;background&quot;);" title="change the background color"><b>b</b></div>
+<div onclick="color(lastTarget, &quot;color&quot;);" title="change the text color"><b>c</b></div>
+<br>
+<div onclick="pad(lastTarget, &quot;&gt;&lt;&quot;)" title="shrink the text some"><b>&gt;&lt;</b></div>
+<div onclick="pad(lastTarget, &quot;&lt;&gt;&quot;)" title="expand the text some"><b>&lt;&gt;</b></div>
+<div onclick="pad(lastTarget, &quot;&lt;&quot;)" title="move text more to the left" <b="">&lt;</div>
+<div onclick="pad(lastTarget, &quot;&gt;&quot;)" title="move text more to the rigth"><b>&gt;</b></div>
+<div onclick="pad(lastTarget, &quot;*&quot;)" title="maximize width of text"><b>*</b></div>
+</div>
+
+<div id="all" style="max-width: 100%; width: 100%; overflow: hidden; zoom: 1; background: white;" contenteditable="true" onclick="move(event);return true;" onkeydown="move(event);" onkeyup="resize();" onmousemove="mouse(event)">
+
+<div id="1" title="1" class="slide" style="color: blue; height: 814px; zoom: 0.973684210526316; width: 1401.89189189189px; -webkit-column-break-inside: avoid; background: yellow;">
+<div class="fit" style="zoom: 2.53364269141531; display: table-row;">Chiang Mai Makerfaire</div><div class="fit" style="zoom: 1; display: table-row;"><br></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 5.32682926829268; display: table-row;"><span style="color: yellow; background-color: blue;"> esp-lisp </span></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row; color: yellow; background: blue;"></div>
+<div class="fit" style="zoom: 5.22488038277512; display: table-row;"><span style="color: yellow; font-family: helvetica, arial, sans-serif; font-size: 11.9999990463257px; font-weight: normal; line-height: 17.0666675567627px; text-align: left; white-space: pre-wrap; background: blue;">An interactive IoT LISP
+</span><span style="color: yellow; font-family: helvetica, arial, sans-serif; font-size: 11.9999990463257px; font-weight: normal; line-height: 17.0666675567627px; text-align: left; white-space: pre-wrap; background: blue;">for </span><span style="color: yellow; font-family: helvetica, arial, sans-serif; font-size: 11.9999990463257px; font-weight: normal; line-height: 17.0666675567627px; text-align: left; white-space: pre-wrap; background-color: blue;">embedded esp8266 programming</span></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 2.12865497076023; display: table-row;">(c) 2016 Jonas S Karlsson</div>
+</div>
+
+<div id="2" title="2" class="slide" style="text-align: center; color: black; height: 814px; zoom: 0.583094555873925; width: 2340.95823095823px; -webkit-column-break-inside: avoid; background: red;">
+<br>
+<div class="fit" style="zoom: 8.53125; display: table-row;">Agenda</div><div class="fit" style="zoom: 1; display: table-row;"><br></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row; color: blue; background: black;"><br></div><div class="fit" style="zoom: 1; display: table-row; color: blue; background: black;"><br></div><div class="fit" style="zoom: 3.66442953020134; display: table-row; color: blue; background: black;">ESP8266       </div><div class="fit" style="zoom: 1; display: table-row; color: blue; background: black;"><br></div><div class="fit" style="zoom: 1; display: table-row; color: blue; background: black;"><br></div><div class="fit" style="zoom: 52; display: table-row; color: blue; background: black;"> </div><div class="fit" style="zoom: 5.6875; display: table-row; color: green; background: black;">     live<br>    </div><div class="fit" style="zoom: 1; display: table-row; color: green; background: black;"><br></div><div class="fit" style="zoom: 1; display: table-row; color: green; background: black;"><br></div><div class="fit" style="zoom: 4.66666666666667; display: table-row; color: red; background: black;"> lisp      </div><div class="fit" style="zoom: 7.32885906040269; display: table-row; color: blue; background: black;"><span style="color: yellow; line-height: 20px; text-align: left;">      &nbsp;</span></div><div class="fit" style="zoom: 3.66442953020134; display: table-row; color: blue; background: black;"><span style="color: white; line-height: 20px; text-align: left;"> conclusion</span><span style="color: yellow; line-height: 20px; text-align: left;">  &nbsp;</span></div><div class="fit" style="zoom: 1; display: table-row; color: blue; background: black;"></div><div class="fit" style="zoom: 1; display: table-row; color: blue; background: black;"><br></div><div class="fit" style="zoom: 1; display: table-row; color: blue; background: black;"></div><div class="fit" style="zoom: 1; display: table-row; color: green; background: black;"></div><div class="fit" style="zoom: 1; display: table-row; color: green; background: black;"></div><div class="fit" style="zoom: 1; display: table-row; color: red; background: black;"></div><div class="fit" style="zoom: 1; display: table-row; color: red; background: black;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="line-height: 15px; zoom: 1; display: table-row;"></div><div class="fit" style="line-height: 15px; zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"><br></div><div class="fit" style="zoom: 1; display: table-row;"></div><div class="fit" style="zoom: 1; display: table-row;"></div></div>
+
+
+<script>
+function about() {
+  alert("(C) 2015 Jonas S Karlsson, slides, jsk@yesco.org");
+}
+
+function mouse(e) {
+  var ratio = (1 - e.clientX / screen.width);
+  var d = document.getElementById("menu");
+  // only when really close
+  d.style.opacity = ratio*ratio*ratio*ratio;
+}
+
+function renumber() {
+  var slides = document.getElementsByClassName("slide");
+  
+  Array.prototype.slice.call(slides).forEach(function(s, i){
+    s.id = i + 1;
+    s.title = s.id;
+    s.onclick = function(){ goto(+ s.id); };
+    s.style["-webkit-column-break-inside"] = "avoid";
+  });
+}
+
+function newslide(pos) {
+  var s = '<div id="N" title="N" class="slide" style="color: yellow; background: black;">\n' + 
+    '  <div class="fit" style="color: black; display: table-row; background: blue;">NEWSLIDE</div>\n' +
+    '  <div class="fit" style="color: red; display: table-row;">something</div>\n' + 
+    '  <div class="fit" style="color: green; display: table-row;">else</div>\n' +
+    '  <div class="fit" style="color: blue; display: table-row;">right?</div>\n' + 
+  '</div>';
+  if (pos) {
+    var d = document.getElementById(pos);
+    d.insertAdjacentHTML("beforebegin", s);
+    renumber();
+    goto(current);
+    goto(current);
+    goto(current);
+  } else {
+    var d = document.getElementById("all");
+    d.insertAdjacentHTML("beforeend", s);
+    renumber();
+    goto(-1);
+    goto(-1);
+    goto(-1);
+  }
+  // this fixes multicolumn overview "woles"
+  window.resize();
+}
+
+function move(e) {
+  // click event move focus
+  var newTarget;
+  if (e instanceof MouseEvent) newTarget = e.target;
+
+  // tab to move
+  if (e.keyCode == 9 && lastTarget) {
+    newTarget = e.shiftKey ? lastTarget.prevElementSibling : lastTarget.nextElementSibling;
+  }
+
+  if (newTarget) {
+    if (lastTarget) {
+      lastTarget.style.outline = '';
+      lastTarget.style.outlineOffset = '';
+    }
+    lastEvent = e;
+    lastTarget = newTarget;
+//    lastTarget.style.outline = '2px dashed black';
+//    lastTarget.style.outlineOffset = '-1px';
+    lastTarget.focus();
+  }
+}
+
+function resizeIt(e) {
+  var c = e;
+  e.style.zoom = 1;
+  e.style.display = 'inline-block';
+//  e.style.width = '';
+
+  var ww = window.innerWidth;
+  var wh = window.innerHeight;
+
+  var w = c.offsetWidth;
+  var h = c.offsetHeight;
+
+  var z = ww/w * 0.8;
+  var zh = wh/e.parentNode.offsetHeight * 0.8;
+
+  console.log(e.innerText, "\n", ww, w, z);
+
+  e.style.zoom = z;
+  e.style.display = 'table-row';
+
+//e.style.transform = 'scale(' + z + ',' + zh + ')';
+//e.style.transform = 'scale(1.1, 1.3)';
+//e.style.transform = 'scale(' + z + ', 1)';
+
+}
+
+function resize() {
+  var ds = document.getElementsByClassName('fit');
+  Array.prototype.slice.call(ds).forEach(function(x){
+    resizeIt(x);
+  });
+
+  // fix height by stretch
+  var ds = document.getElementsByClassName('slide');
+  Array.prototype.slice.call(ds).forEach(function(e){
+
+var wh = window.innerHeight;
+var ww = window.innerWidth;
+e.style.height = wh;
+//e.style.width = ww;
+//return;
+
+  var wh = window.innerHeight;
+  var h = e.offsetHeight;
+  e.style.zoom = wh/h;
+  e.style.width = window.innerWidth * h/wh;
+
+//      e.style.zoom = 1;
+//      var z = wh/e.offsetHeight;
+//      e.style.height = wh/z;
+//      e.style.zoom = z * 0.90;
+  });
+
+}
+
+function overview() {
+  var d = document.getElementById("all");
+  d.style.zoom = 0.15;
+  d.style["-webkit-column-count"] = 7;
+  d.style["-webkit-column-width"] = "300px";
+  d.contentEditable = "false";
+}
+
+function normal() {
+  var d = document.getElementById("all");
+  d.style.zoom = 1;
+  d.style["-webkit-column-count"] = "";
+  d.style["-webkit-column-width"] = "";
+  d.contentEditable = "true";
+}
+
+resize();
+window.onresize = resize;
+
+var current;
+
+function goto(id) {
+  normal();
+  var slides = document.getElementsByClassName("slide");
+
+  if (id === -1) id = slides.length;
+  if (current < 0) current = 1;
+
+  // show only this one
+  document.getElementById("all").style.zoom=1;
+
+  var e = document.getElementById(id);
+  if (!e) return;
+
+  current = id;
+
+  // update current indicator
+  var c = document.getElementById("current");
+  if (c) c.innerText = current + "/" + slides.length;
+
+  e.scrollIntoView();
+
+  var wh = window.innerHeight;
+  var h = e.offsetHeight;
+  e.style.zoom = wh/h;
+  e.style.width = window.innerWidth * h/wh;
+  //  e.style.width = '100%';
+}
+
+function next() {  goto(current+1); }
+function prev() {  goto(current-1); }
+
+function zoom(id, factor) {
+  var e = id instanceof Node ? id : document.getElementById(id);
+  e.style.zoom = (e.style.zoom || 1) * factor;
+}
+
+function nextColor(last) {
+  if (last == 'black') return 'white';
+  if (last == 'white') return 'red';
+  if (last == 'red') return 'green';
+  if (last == 'green') return 'yellow';
+  if (last == 'yellow') return 'blue';
+  if (last == 'blue') return 'black';
+  return 'red';
+}
+
+function color(id, where) {
+  var e = id instanceof Node ? id : document.getElementById(id);
+  e.style[where] = nextColor(e.style[where]);
+}
+
+function pad(id, using) {
+  var e = id instanceof Node ? id : document.getElementById(id);
+  var s = e.innerHTML;
+  console.log(s);
+  using = using.replace('&lt;', '<').replace('&gt;', '>');
+  if (using == '><') s = ' ' + s + ' ';
+  if (using == '<>') s = s.replace(/^ (.*) $/, '$1');
+  if (using == '>') s = s.replace(/^(.*) ?$/, ' $1');
+  if (using == '<') s = s.replace(/^ ?(.*)$/, '$1 ');
+  if (using == '*') s = s.replace(/^ *(\b.*\b) *$/, '$1');
+  e.innerHTML = s;
+  resize();
+}
+
+renumber();
+goto(1);
+goto(1);
+goto(1);
+</script>
+
+
+
+
+
+<div id="3" title="3" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.468354430379747; width: 2914.45945945946px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 7.85611510791367; background: blue;">ESP8266<br></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 2.74371859296482;">Single Chip Computer</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: yellow; display: table-row; zoom: 6.10055865921788;">~40KB RAM<br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 4.23255813953488;">512-4MB Flash</div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 4.23255813953488; background: black;">10RMB == 2USD<br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 18.2;">IoT<br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1; background: red;"></div><div class="fit" style="color: blue; display: table-row; zoom: 1; background: red;"></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="4" title="4" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.394762366634336; width: 3457.77641277641px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 13.4814814814815; background: green;">live</div><div class="fit" style="color: red; display: table-row; zoom: 17.9016393442623; background: black;">Lua</div><div class="fit" style="color: blue; display: table-row; zoom: 4.89686098654709; background: black;">interactive</div><div class="fit" style="color: green; display: table-row; zoom: 5.37931034482759; background: black;">easy start</div><div class="fit" style="color: green; display: table-row; zoom: 1; background: black;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1; background: black;"><span style="color: white;"><br></span></div><div class="fit" style="color: green; display: table-row; zoom: 2.33832976445396; background: black;"><span style="color: white;">difficult for more than</span><br></div><div class="fit" style="color: white; display: table-row; zoom: 1; background: black;"></div><div class="fit" style="color: white; display: table-row; zoom: 3.36; background: black;">one page of code</div><div class="fit" style="color: white; display: table-row; zoom: 1; background: black;"><br></div><div class="fit" style="color: white; display: table-row; zoom: 1; background: black;"><br></div><div class="fit" style="color: white; display: table-row; zoom: 1; background: black;"></div><div class="fit" style="color: red; display: table-row; zoom: 2.33832976445396; background: black;">1 function = 600 bytes!</div><div class="fit" style="color: red; display: table-row; zoom: 1; background: black;"><br></div><div class="fit" style="color: yellow; display: table-row; zoom: 3.16521739130435; background: black;">only have 20KB...</div><div class="fit" style="color: red; display: table-row; zoom: 1; background: black;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 1; background: green;"></div><div class="fit" style="color: black; display: table-row; zoom: 1; background: green;"></div><div class="fit" style="color: black; display: table-row; zoom: 1; background: green;"></div><div class="fit" style="color: black; display: table-row; zoom: 1; background: green;"></div><div class="fit" style="color: black; display: table-row; zoom: 1; background: green;"></div><div class="fit" style="color: black; display: table-row; zoom: 1; background: green;"></div><div class="fit" style="display: table-row; color: blue; zoom: 1; background: red;"></div><div class="fit" style="display: table-row; color: blue; zoom: 1; background: red;"></div><div class="fit" style="display: table-row; color: blue; zoom: 1; background: red;"></div><div class="fit" style="display: table-row; color: blue; zoom: 1; background: red;"></div><div class="fit" style="display: table-row; color: green; zoom: 1;"></div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="5" title="5" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.94431554524362; width: 1445.4914004914px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 13; background: red;">Lisp</div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 3.25970149253731;">live interactive<br></div>
+  <div class="fit" style="color: white; display: table-row; zoom: 4.33333333333333;">command line</div><div class="fit" style="color: yellow; display: table-row; zoom: 3.47770700636943;">program == data</div>
+</div><div id="6" title="6" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.445783132530121; width: 3062.02702702703px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 13.1566265060241; background: blue;">I'll</div><div class="fit" style="color: black; display: table-row; zoom: 1; background: blue;"></div>
+  <div class="fit" style="color: red; display: table-row; zoom: 10.5;">teach</div><div class="fit" style="color: green; display: table-row; zoom: 17.6129032258065;">You</div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 10.5;">Lisp!</div>
+</div><div id="7" title="7" class="slide" style="color: blue; -webkit-column-break-inside: avoid; zoom: 0.66885784716516; width: 2040.79238329238px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 6.86792452830189; background: blue;">  Number<br>  </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 27.3;"><span style="font-size: 40.0000038146973px;">42</span><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="8" title="8" class="slide" style="color: green; -webkit-column-break-inside: avoid; zoom: 0.97719087635054; width: 1396.86117936118px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 3.80487804878049; background: blue;"> String<br>              </div><div class="fit" style="color: black; display: table-row; zoom: 1;"></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 3.80487804878049;">"Hello World!"</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="9" title="9" class="slide" style="color: black; -webkit-column-break-inside: avoid; zoom: 0.398044009779951; width: 3429.26904176904px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 4.47540983606557; background: blue;">   Symbol   </div>
+  <div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 8.95081967213115;">define</div><div class="fit" style="color: green; display: table-row; zoom: 17.9016393442623;">  x</div><div class="fit" style="color: blue; display: table-row; zoom: 17.9016393442623;">+<br>   </div><div class="fit" style="color: black; display: table-row; zoom: 1;"></div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div><div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div>
+</div><div id="10" title="10" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.976019184652278; width: 1398.53808353808px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 4.4390243902439; background: blue;">nil<br>            </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 10.7058823529412;"> ( ) </div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="11" title="11" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.976019184652278; width: 1398.53808353808px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 3.80487804878049; background: blue;">      Pair    <br>      </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 7.58333333333333;">(3 . 4)</div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div></div><div id="12" title="12" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.448979591836735; width: 3040.22727272727px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 13.65; background: blue;">List</div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 5.46;">(3 . nil )</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: white; display: table-row; zoom: 4.2;">   same as   </div><div class="fit" style="color: white; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: white; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 18.2;">(3)</div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="13" title="13" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.447498625618472; width: 3050.2886977887px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 5.25; background: blue;">   List   </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 7.47945205479452;">(1 .   </div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 7.47945205479452;">(2 .   </div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: yellow; display: table-row; zoom: 7.47945205479452;">(3 . ()</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 5.83957219251337;">         </div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: yellow; display: table-row; zoom: 4.76855895196507;">          )</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 4.368;">           )</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 4.368;">           )</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="14" title="14" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.97719087635054; width: 1396.86117936118px; height: 814px; background: black;"><div class="fit" style="color: black; display: table-row; zoom: 1; background: blue;"></div>
+  <div class="fit" style="color: black; display: table-row; zoom: 4.4390243902439; background: blue;">    List    </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 7.63636363636364;">(1 2 3)</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="15" title="15" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.974850299401198; width: 1400.21498771499px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 2.80719794344473; background: blue;">  call a function  </div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 7.63636363636364;">(+ 3 4)</div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="16" title="16" class="slide" style="-webkit-column-break-inside: avoid; zoom: 0.97719087635054; width: 1396.86117936118px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 2.66341463414634; background-image: initial; background-attachment: initial; background-color: blue; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">  call 2 functions  </div>
+  <div class="fit" style="display: table-row; zoom: 1;"><span style="color: green;"><br></span></div><div class="fit" style="display: table-row; zoom: 1;"><span style="color: green;"><br></span></div><div class="fit" style="display: table-row; zoom: 1;"><span style="color: green;"><br></span></div><div class="fit" style="display: table-row; zoom: 1;"><span style="color: green;"><br></span></div><div class="fit" style="display: table-row; zoom: 4.10526315789474;"><span style="color: green;">(* 2 (+ 3 4))</span></div><div class="fit" style="display: table-row; zoom: 1;"><span style="color: green;"><br></span></div><div class="fit" style="display: table-row; zoom: 1;"><span style="color: green;"><br></span></div><div class="fit" style="display: table-row; zoom: 1;"><span style="color: green;"><br></span></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="17" title="17" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.974850299401198; width: 1400.21498771499px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 3.32926829268293; background: blue;">read/write pin 4</div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 5.32682926829268;">(in 4)    </div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 5.32682926829268;">(out 4 1) <br></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div>
+</div><div id="18" title="18" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.922902494331066; width: 1479.02948402948px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 3.37037037037037; background: blue;">     double     </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 3;">(define (double n)</div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 6;">  (+ n n)</div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 3.37037037037037;">               )</div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div><div id="19" title="19" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.973684210526316; width: 1401.89189189189px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 2.53364269141531; background: blue;">      call it        </div><div class="fit" style="color: black; display: table-row; zoom: 52; background: blue;"> </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 5.32682926829268;">(double 7)<br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div>
+</div><div id="20" title="20" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.976019184652278; width: 1398.53808353808px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 4.4390243902439; background: blue;">     if     </div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: yellow; display: table-row; zoom: 2.1328125;">(if (= 3 3)              </div><div class="fit" style="color: green; display: table-row; zoom: 3.13793103448276;">       "is equal"</div><div class="fit" style="color: red; display: table-row; zoom: 2.66992665036675;">         "not equal"</div><div class="fit" style="color: yellow; display: table-row; zoom: 2.1328125;">                        )</div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div>
+
+<div id="21" title="21" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.976019184652278; width: 1398.53808353808px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 5.32682926829268; background: blue;">   loop   </div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1.71428571428571;">(define (loop n)               </div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: green; display: table-row; zoom: 1.662100456621;">  (if (&lt; n 1) nil               </div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1.96756756756757;">      (cons n              <br></div><div class="fit" style="color: green; display: table-row; zoom: 1.47767253044655;">                (loop (- n 1)) ) ) )<br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div>
+</div>
+
+<div id="22" title="22" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.976019184652278; width: 1398.53808353808px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 3.80487804878049; background: blue;">call it<br>              </div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 4.4390243902439;">&gt;(loop 5)   </div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: green; display: table-row; zoom: 4.85333333333333;">(5 4 3 2 1)<br></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div>
+</div></div>
+
+<div id="23" title="23" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.939953810623557; width: 1452.19901719902px; height: 814px; background: white;">
+  <div class="fit" style="color: black; display: table-row; zoom: 5.00917431192661; background: blue;">Interactive</div>
+  <div class="fit" style="color: black; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 3.66442953020134;">&gt; trace on     </div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 3.66442953020134;">&gt; mem (+ 3 4)  </div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: black; display: table-row; zoom: 3.66442953020134;">&gt; help&nbsp;       &nbsp;</div><div class="fit" style="color: red; display: table-row; zoom: 1;"></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 2.39473684210526;">Ctrl-T       CTRL-C    <br></div>
+  <div class="fit" style="color: green; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: blue; display: table-row; zoom: 1;"></div>
+</div>
+
+<div id="24" title="24" class="slide" style="color: yellow; -webkit-column-break-inside: avoid; zoom: 0.976019184652278; width: 1398.53808353808px; height: 814px; background: black;">
+  <div class="fit" style="color: black; display: table-row; zoom: 5.32682926829268; background: blue;">Conclusion</div><div class="fit" style="color: black; display: table-row; zoom: 1; background: blue;"></div>
+  <div class="fit" style="color: red; display: table-row; zoom: 1;"><br></div><div class="fit" style="color: red; display: table-row; zoom: 1.83529411764706;">1/2 the speed of compiled Lua</div>
+  <div class="fit" style="color: green; display: table-row; zoom: 3.80487804878049;">tail recursion</div><div class="fit" style="color: yellow; display: table-row; zoom: 4.08988764044944;">debug        <br></div><div class="fit" style="color: green; display: table-row; zoom: 1;"></div>
+  <div class="fit" style="color: blue; display: table-row; zoom: 1;"><br></div>
+</div>
+
+<script>
+function about() {
+  alert("(C) 2015 Jonas S Karlsson, slides, jsk@yesco.org");
+}
+
+function mouse(e) {
+  var ratio = (1 - e.clientX / screen.width);
+  var d = document.getElementById("menu");
+  // only when really close
+  d.style.opacity = ratio*ratio*ratio*ratio;
+}
+
+function renumber() {
+  var slides = document.getElementsByClassName("slide");
+  
+  Array.prototype.slice.call(slides).forEach(function(s, i){
+    s.id = i + 1;
+    s.title = s.id;
+    s.onclick = function(){ goto(+ s.id); };
+    s.style["-webkit-column-break-inside"] = "avoid";
+  });
+}
+
+function newslide(pos) {
+  var s = '<div id="N" title="N" class="slide" style="color: yellow; background: black;">\n' + 
+    '  <div class="fit" style="color: black; display: table-row; background: blue;">NEWSLIDE</div>\n' +
+    '  <div class="fit" style="color: red; display: table-row;">something</div>\n' + 
+    '  <div class="fit" style="color: green; display: table-row;">else</div>\n' +
+    '  <div class="fit" style="color: blue; display: table-row;">right?</div>\n' + 
+  '</div>';
+  if (pos) {
+    var d = document.getElementById(pos);
+    d.insertAdjacentHTML("beforebegin", s);
+    renumber();
+    goto(current);
+    goto(current);
+    goto(current);
+  } else {
+    var d = document.getElementById("all");
+    d.insertAdjacentHTML("beforeend", s);
+    renumber();
+    goto(-1);
+    goto(-1);
+    goto(-1);
+  }
+  // this fixes multicolumn overview "woles"
+  window.resize();
+}
+
+function move(e) {
+  // click event move focus
+  var newTarget;
+  if (e instanceof MouseEvent) newTarget = e.target;
+
+  // tab to move
+  if (e.keyCode == 9 && lastTarget) {
+    newTarget = e.shiftKey ? lastTarget.prevElementSibling : lastTarget.nextElementSibling;
+  }
+
+  if (newTarget) {
+    if (lastTarget) {
+      lastTarget.style.outline = '';
+      lastTarget.style.outlineOffset = '';
+    }
+    lastEvent = e;
+    lastTarget = newTarget;
+//    lastTarget.style.outline = '2px dashed black';
+//    lastTarget.style.outlineOffset = '-1px';
+    lastTarget.focus();
+  }
+}
+
+function resizeIt(e) {
+  var c = e;
+  e.style.zoom = 1;
+  e.style.display = 'inline-block';
+//  e.style.width = '';
+
+  var ww = window.innerWidth;
+  var wh = window.innerHeight;
+
+  var w = c.offsetWidth;
+  var h = c.offsetHeight;
+
+  var z = ww/w * 0.8;
+  var zh = wh/e.parentNode.offsetHeight * 0.8;
+
+  console.log(e.innerText, "\n", ww, w, z);
+
+  e.style.zoom = z;
+  e.style.display = 'table-row';
+
+//e.style.transform = 'scale(' + z + ',' + zh + ')';
+//e.style.transform = 'scale(1.1, 1.3)';
+//e.style.transform = 'scale(' + z + ', 1)';
+
+}
+
+function resize() {
+  var ds = document.getElementsByClassName('fit');
+  Array.prototype.slice.call(ds).forEach(function(x){
+    resizeIt(x);
+  });
+
+  // fix height by stretch
+  var ds = document.getElementsByClassName('slide');
+  Array.prototype.slice.call(ds).forEach(function(e){
+
+var wh = window.innerHeight;
+var ww = window.innerWidth;
+e.style.height = wh;
+//e.style.width = ww;
+//return;
+
+  var wh = window.innerHeight;
+  var h = e.offsetHeight;
+  e.style.zoom = wh/h;
+  e.style.width = window.innerWidth * h/wh;
+
+//      e.style.zoom = 1;
+//      var z = wh/e.offsetHeight;
+//      e.style.height = wh/z;
+//      e.style.zoom = z * 0.90;
+  });
+
+}
+
+function overview() {
+  var d = document.getElementById("all");
+  d.style.zoom = 0.15;
+  d.style["-webkit-column-count"] = 7;
+  d.style["-webkit-column-width"] = "300px";
+  d.contentEditable = "false";
+}
+
+function normal() {
+  var d = document.getElementById("all");
+  d.style.zoom = 1;
+  d.style["-webkit-column-count"] = "";
+  d.style["-webkit-column-width"] = "";
+  d.contentEditable = "true";
+}
+
+resize();
+window.onresize = resize;
+
+var current;
+
+function goto(id) {
+  normal();
+  var slides = document.getElementsByClassName("slide");
+
+  if (id === -1) id = slides.length;
+  if (current < 0) current = 1;
+
+  // show only this one
+  document.getElementById("all").style.zoom=1;
+
+  var e = document.getElementById(id);
+  if (!e) return;
+
+  current = id;
+
+  // update current indicator
+  var c = document.getElementById("current");
+  if (c) c.innerText = current + "/" + slides.length;
+
+  e.scrollIntoView();
+
+  var wh = window.innerHeight;
+  var h = e.offsetHeight;
+  e.style.zoom = wh/h;
+  e.style.width = window.innerWidth * h/wh;
+  //  e.style.width = '100%';
+}
+
+function next() {  goto(current+1); }
+function prev() {  goto(current-1); }
+
+function zoom(id, factor) {
+  var e = id instanceof Node ? id : document.getElementById(id);
+  e.style.zoom = (e.style.zoom || 1) * factor;
+}
+
+function nextColor(last) {
+  if (last == 'black') return 'white';
+  if (last == 'white') return 'red';
+  if (last == 'red') return 'green';
+  if (last == 'green') return 'yellow';
+  if (last == 'yellow') return 'blue';
+  if (last == 'blue') return 'black';
+  return 'red';
+}
+
+function color(id, where) {
+  var e = id instanceof Node ? id : document.getElementById(id);
+  e.style[where] = nextColor(e.style[where]);
+}
+
+function pad(id, using) {
+  var e = id instanceof Node ? id : document.getElementById(id);
+  var s = e.innerHTML;
+  console.log(s);
+  using = using.replace('&lt;', '<').replace('&gt;', '>');
+  if (using == '><') s = ' ' + s + ' ';
+  if (using == '<>') s = s.replace(/^ (.*) $/, '$1');
+  if (using == '>') s = s.replace(/^(.*) ?$/, ' $1');
+  if (using == '<') s = s.replace(/^ ?(.*)$/, '$1 ');
+  if (using == '*') s = s.replace(/^ *(\b.*\b) *$/, '$1');
+  e.innerHTML = s;
+  resize();
+}
+
+renumber();
+goto(1);
+goto(1);
+goto(1);
+</script>
+
+</body></html>
