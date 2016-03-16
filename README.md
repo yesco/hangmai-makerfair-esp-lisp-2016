@@ -4,3 +4,5 @@ Slides for 15 minutes presentation of esp-lisp for esp8266, with mini tutorial f
 
 Theses slides also contain a brain-dead slides editor. Controls accessed by moving cursor left.
 
+[Read the slides online](https://rawgit.com/yesco/hangmai-makerfair-esp-lisp-2016/master/index.html)
+
